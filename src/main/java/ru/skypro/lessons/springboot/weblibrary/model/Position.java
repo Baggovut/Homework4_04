@@ -23,8 +23,8 @@ public class Position {
     @Column(name = "position_name")
     private String positionName;
 
-    @OneToMany
-    @JoinColumn(name="position_id")
+    @OneToMany(mappedBy = "position")
+    //@JoinColumn(name="position_id")
     @JsonBackReference
     @JsonIgnoreProperties("employeeList")
     @JsonIgnore

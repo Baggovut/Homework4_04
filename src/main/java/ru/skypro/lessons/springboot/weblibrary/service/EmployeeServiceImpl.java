@@ -78,26 +78,42 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void addEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public void addEmployee(EmployeeDTO employeeDTO) {
+        Position existedPosition = positionRepository.findPositionByPositionName(employeeDTO.getPosition().getPositionName());
+
+        if(existedPosition != null){
+            employeeDTO.setPosition(existedPosition);
+        }
+
+        employeeRepository.save(employeeDTO.toEmployee());
     }
 
     @Override
     public void editEmployeeById(Integer id, EmployeeDTO employeeDTO) {
+        if(id < 1){
+            throw new IdNotFoundException("id не может быть меньше 1");
+        }
         Employee employee = getEmployeeById(id);
         if(employee != null){
             employeeDTO.setId(id);
-            employeeRepository.save(employeeDTO.toEmployee());
+            addEmployee(employeeDTO);
         }
     }
 
     @Override
     public Employee getEmployeeById(Integer id) {
+        if(id < 1){
+            throw new IdNotFoundException("id не может быть меньше 1");
+        }
         return employeeRepository.findById(id).orElseThrow(()-> new IdNotFoundException("Сотрудник с id="+id+" не найден"));
     }
 
     @Override
     public void deleteEmployeeById(Integer id) {
+        if(id < 1){
+            throw new IdNotFoundException("id не может быть меньше 1");
+        }
+
         Employee employee1 = getEmployeeById(id);
         if(employee1 != null){
             employeeRepository.deleteById(id);
@@ -116,6 +132,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<EmployeeDTO> getEmployeesWithPosition(Integer positionId) {
         if(positionId == null){
             return getAllEmployees();
+        }
+        if(positionId < 1){
+            throw new IdNotFoundException("position_id не может быть меньше 1");
         }
         Position foundedPosition = positionRepository
                 .findById(positionId)

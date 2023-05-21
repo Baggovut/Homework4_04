@@ -33,8 +33,8 @@ public class EmployeeController {
         return employeeService.getEmployeesWithHighSalary();
     }
     @PostMapping("/")
-    public void addEmployee(@RequestBody Employee employee){
-        employeeService.addEmployee(employee);
+    public void addEmployee(@RequestBody EmployeeDTO employeeDTO){
+        employeeService.addEmployee(employeeDTO);
     }
     @PutMapping("/{id}")
     public void editEmployeeById(@PathVariable(name = "id") Integer id,@RequestBody EmployeeDTO employeeDTO){

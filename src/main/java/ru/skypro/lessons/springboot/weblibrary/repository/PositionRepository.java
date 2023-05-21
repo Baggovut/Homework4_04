@@ -5,5 +5,5 @@ import ru.skypro.lessons.springboot.weblibrary.model.Position;
 
 
 public interface PositionRepository extends CrudRepository<Position,Integer> {
-
+    Position findPositionByPositionName (String positionName);
 }

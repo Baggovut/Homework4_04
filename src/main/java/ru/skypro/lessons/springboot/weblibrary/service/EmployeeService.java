@@ -13,7 +13,7 @@ public interface EmployeeService {
     EmployeeDTO getEmployeeWithMinSalary();
     List<EmployeeDTO> getEmployeeWithMaxSalary();
     List<EmployeeDTO> getEmployeesWithHighSalary();
-    void addEmployee(Employee employeeDTO);
+    void addEmployee(EmployeeDTO employeeDTO);
     void editEmployeeById(Integer id, EmployeeDTO employeeDTO);
     Employee getEmployeeById(Integer id);
     void deleteEmployeeById(Integer id);

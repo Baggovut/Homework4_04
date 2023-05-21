@@ -9,7 +9,6 @@ public class EmployeeDTO {
     private Integer id;
     private String name;
     private Integer salary;
-    //private String positionName;
     private Position position;
     public static EmployeeDTO fromEmployee(Employee employee) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
@@ -17,7 +16,6 @@ public class EmployeeDTO {
         employeeDTO.setName(employee.getName());
         employeeDTO.setSalary(employee.getSalary());
         employeeDTO.setPosition(employee.getPosition());
-        //employeeDTO.setPositionName(employee.getPosition().getPositionName());
         return employeeDTO;
     }
 
@@ -27,7 +25,6 @@ public class EmployeeDTO {
         employee.setName(this.getName());
         employee.setSalary(this.getSalary());
         employee.setPosition(this.getPosition());
-        //employee.getPosition().setPositionName(this.getPositionName());
         return employee;
     }
 }
