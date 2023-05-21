@@ -10,6 +10,7 @@ public class EmployeeDTO {
     private String name;
     private Integer salary;
     private Position position;
+
     public static EmployeeDTO fromEmployee(Employee employee) {
         EmployeeDTO employeeDTO = new EmployeeDTO();
         employeeDTO.setId(employee.getId());
